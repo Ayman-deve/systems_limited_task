@@ -1,0 +1,59 @@
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #fff;
+}
+
+.main-content {
+  margin-left: 200px;
+  flex: 1;
+  padding: 20px 40px;
+}
+
+.page-container {
+  width: 100%;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.section-header h2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+}
+
+.btn-add-task {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-add-task:hover {
+  background-color: #1565c0;
+}
+
+.btn-icon {
+  margin-right: 8px;
+  font-size: 18px;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 16px;
+  color: #666;
+}
+
