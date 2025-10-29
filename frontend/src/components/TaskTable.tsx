@@ -5,7 +5,6 @@ import {
   type MRT_ColumnDef,
 } from 'material-react-table';
 import { Task } from '../types';
-import './TaskTable.css';
 
 interface TaskTableProps {
   tasks: Task[];
@@ -108,52 +107,16 @@ const TaskTable: React.FC<TaskTableProps> = ({ tasks, onEdit, onDelete }) => {
       header: 'Actions',
       size: 150,
       Cell: ({ row }) => (
-        <div className="table-actions">
+        <div className="flex gap-3 md:flex-col md:gap-1.5">
           <button
             onClick={() => onEdit(row.original)}
-            style={{
-              padding: '6px 16px',
-              border: '1px solid #e0e0e0',
-              borderRadius: '6px',
-              fontSize: '13px',
-              fontWeight: 500,
-              cursor: 'pointer',
-              backgroundColor: '#f5f5f5',
-              color: '#333',
-              transition: 'all 0.2s',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#e8e8e8';
-              e.currentTarget.style.borderColor = '#d0d0d0';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#f5f5f5';
-              e.currentTarget.style.borderColor = '#e0e0e0';
-            }}
+            className="px-4 py-1.5 border border-[#e0e0e0] rounded-md text-[13px] font-medium cursor-pointer bg-[#f5f5f5] text-[#333] transition-all hover:bg-[#e8e8e8] hover:border-[#d0d0d0] md:w-full md:px-3 md:py-2 md:text-xs"
           >
             Edit
           </button>
           <button
             onClick={() => onDelete(row.original._id)}
-            style={{
-              padding: '6px 16px',
-              border: '1px solid #dc3545',
-              borderRadius: '6px',
-              fontSize: '13px',
-              fontWeight: 500,
-              cursor: 'pointer',
-              backgroundColor: '#dc3545',
-              color: 'white',
-              transition: 'all 0.2s',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#c82333';
-              e.currentTarget.style.borderColor = '#bd2130';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#dc3545';
-              e.currentTarget.style.borderColor = '#dc3545';
-            }}
+            className="px-4 py-1.5 border border-[#dc3545] rounded-md text-[13px] font-medium cursor-pointer bg-[#dc3545] text-white transition-all hover:bg-[#c82333] hover:border-[#bd2130] md:w-full md:px-3 md:py-2 md:text-xs"
           >
             Delete
           </button>
@@ -235,14 +198,7 @@ const TaskTable: React.FC<TaskTableProps> = ({ tasks, onEdit, onDelete }) => {
   });
 
   return (
-    <div style={{ 
-      background: 'white', 
-      borderRadius: '8px', 
-      overflow: 'hidden', 
-      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
-      width: '100%',
-      overflowX: 'auto',
-    }}>
+    <div className="bg-white rounded-lg overflow-hidden shadow-sm w-full overflow-x-auto">
       <MaterialReactTable table={table} />
     </div>
   );

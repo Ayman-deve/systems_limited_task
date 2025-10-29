@@ -1,6 +1,5 @@
 import React from 'react';
 import { Task } from '../types';
-import './TaskCard.css';
 
 interface TaskCardProps {
   task: Task;
@@ -36,43 +35,49 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onEdit, onDelete }) => {
   };
 
   return (
-    <div className="task-card">
-      <div className="task-header">
-        <h3 className="task-title">{task.title}</h3>
-        <div className="task-status" style={{ backgroundColor: getStatusColor(task.status) }}>
+    <div className="bg-white rounded-lg p-5 shadow-[0_2px_8px_rgba(0,0,0,0.1)] transition-all hover:translate-y-[-2px] hover:shadow-[0_4px_12px_rgba(0,0,0,0.15)] md:p-4 sm:p-3">
+      <div className="flex justify-between items-start mb-3 md:flex-col md:gap-2.5 md:items-start">
+        <h3 className="m-0 text-xl text-[#333] flex-1 mr-2.5 md:mr-0 md:text-lg sm:text-base">{task.title}</h3>
+        <div className="px-3 py-1 rounded-xl text-white text-xs font-semibold capitalize whitespace-nowrap self-start" style={{ backgroundColor: getStatusColor(task.status) }}>
           {task.status}
         </div>
       </div>
 
-      <p className="task-description">{task.description}</p>
+      <p className="text-[#666] mb-4 leading-relaxed md:text-sm sm:text-[13px]">{task.description}</p>
 
-      <div className="task-details">
-        <div className="task-detail-item">
-          <strong>Priority:</strong>{' '}
-          <span className="task-priority" style={{ color: getPriorityColor(task.priority) }}>
+      <div className="mb-4">
+        <div className="mb-2 text-sm text-[#555] md:text-[13px] sm:text-xs">
+          <strong className="text-[#333]">Priority:</strong>{' '}
+          <span className="font-semibold capitalize" style={{ color: getPriorityColor(task.priority) }}>
             {task.priority}
           </span>
         </div>
         {task.assignedTo && (
-          <div className="task-detail-item">
-            <strong>Assigned to:</strong> {task.assignedTo.name}
+          <div className="mb-2 text-sm text-[#555] md:text-[13px] sm:text-xs">
+            <strong className="text-[#333]">Assigned to:</strong> {task.assignedTo.name}
           </div>
         )}
         {task.dueDate && (
-          <div className="task-detail-item">
-            <strong>Due:</strong> {new Date(task.dueDate).toLocaleDateString()}
+          <div className="mb-2 text-sm text-[#555] md:text-[13px] sm:text-xs">
+            <strong className="text-[#333]">Due:</strong> {new Date(task.dueDate).toLocaleDateString()}
           </div>
         )}
-        <div className="task-detail-item">
-          <strong>Created by:</strong> {task.createdBy.name}
+        <div className="mb-2 text-sm text-[#555] md:text-[13px] sm:text-xs">
+          <strong className="text-[#333]">Created by:</strong> {task.createdBy.name}
         </div>
       </div>
 
-      <div className="task-actions">
-        <button className="btn btn-secondary" onClick={() => onEdit(task)}>
+      <div className="flex gap-2.5 md:flex-col">
+        <button 
+          className="flex-1 px-5 py-2.5 bg-[#6c757d] text-white border-none rounded cursor-pointer text-base font-medium hover:bg-[#5a6268] md:w-full"
+          onClick={() => onEdit(task)}
+        >
           Edit
         </button>
-        <button className="btn btn-danger" onClick={() => onDelete(task._id)}>
+        <button 
+          className="flex-1 px-5 py-2.5 bg-[#dc3545] text-white border-none rounded cursor-pointer text-base font-medium hover:bg-[#c82333] md:w-full"
+          onClick={() => onDelete(task._id)}
+        >
           Delete
         </button>
       </div>

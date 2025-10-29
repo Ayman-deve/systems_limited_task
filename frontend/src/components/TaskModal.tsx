@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Task, User } from '../types';
 import * as taskAPI from '../api/tasks';
 import { getAllUsers } from '../api/tasks';
-import './TaskModal.css';
 
 interface TaskModalProps {
   task: Task | null;
@@ -73,23 +72,23 @@ const TaskModal: React.FC<TaskModalProps> = ({ task, onClose, onSave }) => {
   };
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-header">
-          <h2>{task ? 'Edit Task' : 'Create New Task'}</h2>
-          <button className="modal-close" onClick={onClose}>
+    <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-[1000] p-5 md:p-2.5 md:items-start md:pt-5" onClick={onClose}>
+      <div className="bg-white rounded-lg w-full max-w-[600px] max-h-[90vh] overflow-y-auto shadow-[0_10px_40px_rgba(0,0,0,0.2)] md:max-w-full md:max-h-[95vh] sm:max-h-[100vh] sm:rounded-t-lg sm:rounded-b-none" onClick={(e) => e.stopPropagation()}>
+        <div className="flex justify-between items-center p-5 border-b border-[#ddd] md:p-4 sm:p-3">
+          <h2 className="m-0 text-[#333] md:text-lg sm:text-base">{task ? 'Edit Task' : 'Create New Task'}</h2>
+          <button className="bg-none border-none text-[32px] text-[#999] cursor-pointer leading-none p-0 w-[30px] h-[30px] flex items-center justify-center hover:text-[#333] md:text-[28px] md:w-[28px] md:h-[28px]" onClick={onClose}>
             ×
           </button>
         </div>
 
-        {error && <div className="error-message">{error}</div>}
+        {error && <div className="bg-[#f8d7da] text-[#721c24] p-2.5 mx-5 my-5 rounded border border-[#f5c6cb] md:mx-4 md:my-4 md:p-3 md:text-sm sm:mx-3 sm:my-3 sm:p-2.5 sm:text-[13px]">{error}</div>}
 
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Title *</label>
+        <form onSubmit={handleSubmit} className="p-5 md:p-4 sm:p-3">
+          <div className="mb-4">
+            <label className="block mb-1 font-medium text-[#333]">Title *</label>
             <input
               type="text"
-              className="form-control"
+              className="w-full p-2.5 border border-[#ddd] rounded text-base focus:outline-none focus:border-[#007bff] focus:shadow-[0_0_0_2px_rgba(0,123,255,0.25)]"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
@@ -97,10 +96,10 @@ const TaskModal: React.FC<TaskModalProps> = ({ task, onClose, onSave }) => {
             />
           </div>
 
-          <div className="form-group">
-            <label>Description *</label>
+          <div className="mb-4">
+            <label className="block mb-1 font-medium text-[#333]">Description *</label>
             <textarea
-              className="form-control"
+              className="w-full p-2.5 border border-[#ddd] rounded text-base focus:outline-none focus:border-[#007bff] focus:shadow-[0_0_0_2px_rgba(0,123,255,0.25)]"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
@@ -109,11 +108,11 @@ const TaskModal: React.FC<TaskModalProps> = ({ task, onClose, onSave }) => {
             />
           </div>
 
-          <div className="form-row">
-            <div className="form-group">
-              <label>Status</label>
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-1 md:gap-2.5">
+            <div className="mb-4">
+              <label className="block mb-1 font-medium text-[#333]">Status</label>
               <select
-                className="form-control"
+                className="w-full p-2.5 border border-[#ddd] rounded text-base focus:outline-none focus:border-[#007bff] focus:shadow-[0_0_0_2px_rgba(0,123,255,0.25)]"
                 value={status}
                 onChange={(e) => setStatus(e.target.value as any)}
               >
@@ -123,10 +122,10 @@ const TaskModal: React.FC<TaskModalProps> = ({ task, onClose, onSave }) => {
               </select>
             </div>
 
-            <div className="form-group">
-              <label>Priority</label>
+            <div className="mb-4">
+              <label className="block mb-1 font-medium text-[#333]">Priority</label>
               <select
-                className="form-control"
+                className="w-full p-2.5 border border-[#ddd] rounded text-base focus:outline-none focus:border-[#007bff] focus:shadow-[0_0_0_2px_rgba(0,123,255,0.25)]"
                 value={priority}
                 onChange={(e) => setPriority(e.target.value as any)}
               >
@@ -137,11 +136,11 @@ const TaskModal: React.FC<TaskModalProps> = ({ task, onClose, onSave }) => {
             </div>
           </div>
 
-          <div className="form-row">
-            <div className="form-group">
-              <label>Assign To</label>
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-1 md:gap-2.5">
+            <div className="mb-4">
+              <label className="block mb-1 font-medium text-[#333]">Assign To</label>
               <select
-                className="form-control"
+                className="w-full p-2.5 border border-[#ddd] rounded text-base focus:outline-none focus:border-[#007bff] focus:shadow-[0_0_0_2px_rgba(0,123,255,0.25)]"
                 value={assignedTo}
                 onChange={(e) => setAssignedTo(e.target.value)}
               >
@@ -154,22 +153,30 @@ const TaskModal: React.FC<TaskModalProps> = ({ task, onClose, onSave }) => {
               </select>
             </div>
 
-            <div className="form-group">
-              <label>Due Date</label>
+            <div className="mb-4">
+              <label className="block mb-1 font-medium text-[#333]">Due Date</label>
               <input
                 type="date"
-                className="form-control"
+                className="w-full p-2.5 border border-[#ddd] rounded text-base focus:outline-none focus:border-[#007bff] focus:shadow-[0_0_0_2px_rgba(0,123,255,0.25)]"
                 value={dueDate}
                 onChange={(e) => setDueDate(e.target.value)}
               />
             </div>
           </div>
 
-          <div className="modal-actions">
-            <button type="button" className="btn btn-secondary" onClick={onClose}>
+          <div className="flex gap-2.5 justify-end mt-5 md:flex-col-reverse md:gap-2.5 md:mt-4">
+            <button 
+              type="button" 
+              className="px-5 py-2.5 border-none rounded cursor-pointer text-base font-medium bg-[#6c757d] text-white min-w-[100px] hover:bg-[#5a6268] disabled:opacity-60 disabled:cursor-not-allowed md:w-full md:min-w-0 md:p-3"
+              onClick={onClose}
+            >
               Cancel
             </button>
-            <button type="submit" className="btn btn-primary" disabled={loading}>
+            <button 
+              type="submit" 
+              className="px-5 py-2.5 border-none rounded cursor-pointer text-base font-medium bg-[#007bff] text-white min-w-[100px] hover:bg-[#0056b3] disabled:opacity-60 disabled:cursor-not-allowed md:w-full md:min-w-0 md:p-3" 
+              disabled={loading}
+            >
               {loading ? 'Saving...' : task ? 'Update' : 'Create'}
             </button>
           </div>

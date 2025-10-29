@@ -59,16 +59,19 @@ const Tasks: React.FC = () => {
   };
 
   return (
-    <div className="page-container">
-      <div className="section-header">
-        <h2>Tasks</h2>
-        <button className="btn-add-task" onClick={handleCreateTask}>
-          <span className="btn-icon">+</span> Add Task
+    <div className="w-full">
+      <div className="flex justify-between items-center mb-5 flex-wrap gap-2.5 md:flex-col md:items-start">
+        <h2 className="text-xl font-bold text-black md:text-lg sm:text-base">Tasks</h2>
+        <button 
+          className="flex items-center px-5 py-2.5 bg-[#1976d2] text-white border-none rounded-md text-sm font-medium cursor-pointer transition-colors hover:bg-[#1565c0] whitespace-nowrap md:w-full md:justify-center md:px-5 md:py-3 md:text-base"
+          onClick={handleCreateTask}
+        >
+          <span className="mr-2 text-lg">+</span> Add Task
         </button>
       </div>
 
       {loading ? (
-        <div className="loading">Loading tasks...</div>
+        <div className="text-center py-10 text-base text-[#666]">Loading tasks...</div>
       ) : (
         <TaskTable
           tasks={tasks}

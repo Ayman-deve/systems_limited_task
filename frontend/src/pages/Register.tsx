@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import './Auth.css';
 
 const Register: React.FC = () => {
   const [name, setName] = useState('');
@@ -29,46 +28,46 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-card">
-        <h2>Register for Team Tasks</h2>
-        {error && <div className="error-message">{error}</div>}
+    <div className="flex justify-center items-center min-h-screen p-5 md:p-4 md:items-start md:pt-10 sm:p-2.5 sm:pt-[30px]">
+      <div className="bg-white p-10 rounded-lg shadow-md w-full max-w-[400px] md:p-8 md:max-w-full sm:p-6">
+        <h2 className="mb-5 text-center text-[#333] md:text-xl sm:text-lg">Register for Team Tasks</h2>
+        {error && <div className="bg-[#f8d7da] text-[#721c24] p-2.5 rounded border border-[#f5c6cb] mb-4 md:p-3 md:text-sm sm:p-2 md:text-[13px]">{error}</div>}
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Name</label>
+          <div className="mb-4">
+            <label className="block mb-1 font-medium text-[#333] md:text-sm">Name</label>
             <input
               type="text"
-              className="form-control"
+              className="w-full p-2.5 border border-[#ddd] rounded text-base focus:outline-none focus:border-[#007bff] focus:shadow-[0_0_0_2px_rgba(0,123,255,0.25)] md:p-2.5 md:text-base"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
             />
           </div>
-          <div className="form-group">
-            <label>Email</label>
+          <div className="mb-4">
+            <label className="block mb-1 font-medium text-[#333] md:text-sm">Email</label>
             <input
               type="email"
-              className="form-control"
+              className="w-full p-2.5 border border-[#ddd] rounded text-base focus:outline-none focus:border-[#007bff] focus:shadow-[0_0_0_2px_rgba(0,123,255,0.25)] md:p-2.5 md:text-base"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
-          <div className="form-group">
-            <label>Password</label>
+          <div className="mb-4">
+            <label className="block mb-1 font-medium text-[#333] md:text-sm">Password</label>
             <input
               type="password"
-              className="form-control"
+              className="w-full p-2.5 border border-[#ddd] rounded text-base focus:outline-none focus:border-[#007bff] focus:shadow-[0_0_0_2px_rgba(0,123,255,0.25)] md:p-2.5 md:text-base"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
               minLength={6}
             />
           </div>
-          <div className="form-group">
-            <label>Role</label>
+          <div className="mb-4">
+            <label className="block mb-1 font-medium text-[#333] md:text-sm">Role</label>
             <select
-              className="form-control"
+              className="w-full p-2.5 border border-[#ddd] rounded text-base focus:outline-none focus:border-[#007bff] focus:shadow-[0_0_0_2px_rgba(0,123,255,0.25)] md:p-2.5 md:text-base"
               value={role}
               onChange={(e) => setRole(e.target.value)}
             >
@@ -76,12 +75,16 @@ const Register: React.FC = () => {
               <option value="admin">Admin</option>
             </select>
           </div>
-          <button type="submit" className="btn btn-primary" disabled={loading}>
+          <button 
+            type="submit" 
+            className="px-5 py-2.5 border-none rounded cursor-pointer text-base font-medium bg-[#007bff] text-white hover:bg-[#0056b3] disabled:opacity-60 disabled:cursor-not-allowed w-full md:p-3 md:text-base" 
+            disabled={loading}
+          >
             {loading ? 'Registering...' : 'Register'}
           </button>
         </form>
-        <p className="auth-link">
-          Already have an account? <Link to="/login">Login here</Link>
+        <p className="text-center mt-5 text-[#666] md:text-sm sm:text-[13px]">
+          Already have an account? <Link to="/login" className="text-[#007bff] no-underline hover:underline">Login here</Link>
         </p>
       </div>
     </div>

@@ -9,13 +9,12 @@ import Home from './pages/Home';
 import Tasks from './pages/Tasks';
 import Users from './pages/Users';
 import Settings from './pages/Settings';
-import './App.css';
 
 const App: React.FC = () => {
   return (
     <AuthProvider>
       <Router>
-        <div className="App">
+        <div className="min-h-screen bg-white">
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import './Sidebar.css';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -35,16 +34,19 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
 
   return (
     <>
-      <div className={`sidebar-overlay ${isOpen ? 'active' : ''}`} onClick={onClose}></div>
-      <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
+      <div 
+        className={`fixed inset-0 bg-black/50 z-[999] transition-opacity duration-300 md:hidden ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} 
+        onClick={onClose}
+      ></div>
+      <aside className={`fixed left-0 top-0 w-[250px] h-screen bg-[#F8F9FA] py-5 flex flex-col gap-[5px] z-[1000] transition-transform duration-300 md:w-[200px] md:translate-x-0 ${isOpen ? '' : '-translate-x-full'}`}>
         {menuItems.map((item) => (
           <div
             key={item.id}
-            className={`sidebar-item ${activeTab === item.id ? 'active' : ''}`}
+            className={`flex items-center px-5 py-3 cursor-pointer transition-colors text-[#333] hover:bg-[#e9ecef] ${activeTab === item.id ? 'bg-[#e3f2fd] text-[#1976d2]' : ''}`}
             onClick={() => handleNavigation(item.path)}
           >
-            <span className="sidebar-icon">{item.icon}</span>
-            <span className="sidebar-label">{item.label}</span>
+            <span className="mr-2.5 text-lg">{item.icon}</span>
+            <span className="text-sm font-medium">{item.label}</span>
           </div>
         ))}
       </aside>

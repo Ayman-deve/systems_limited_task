@@ -142,22 +142,15 @@ const Users: React.FC = () => {
   });
 
   return (
-    <div className="page-container">
-      <div className="section-header">
-        <h2>Users</h2>
+    <div className="w-full">
+      <div className="flex justify-between items-center mb-5 flex-wrap gap-2.5 md:flex-col md:items-start">
+        <h2 className="text-xl font-bold text-black md:text-lg sm:text-base">Users</h2>
       </div>
 
       {loading ? (
-        <div className="loading">Loading users...</div>
+        <div className="text-center py-10 text-base text-[#666]">Loading users...</div>
       ) : (
-        <div style={{ 
-          background: 'white', 
-          borderRadius: '8px', 
-          overflow: 'hidden', 
-          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
-          width: '100%',
-          overflowX: 'auto',
-        }}>
+        <div className="bg-white rounded-lg overflow-hidden shadow-sm w-full overflow-x-auto">
           <MaterialReactTable table={table} />
         </div>
       )}
