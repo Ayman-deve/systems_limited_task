@@ -5,6 +5,7 @@ import {
   type MRT_ColumnDef,
 } from 'material-react-table';
 import { Task } from '../types';
+import './TaskTable.css';
 
 interface TaskTableProps {
   tasks: Task[];
@@ -54,6 +55,7 @@ const TaskTable: React.FC<TaskTableProps> = ({ tasks, onEdit, onDelete }) => {
       size: 300,
       Cell: ({ cell }) => (
         <div
+          className="table-description"
           style={{
             maxWidth: 300,
             whiteSpace: 'nowrap',
@@ -106,7 +108,7 @@ const TaskTable: React.FC<TaskTableProps> = ({ tasks, onEdit, onDelete }) => {
       header: 'Actions',
       size: 150,
       Cell: ({ row }) => (
-        <div style={{ display: 'flex', gap: 12 }}>
+        <div className="table-actions">
           <button
             onClick={() => onEdit(row.original)}
             style={{
@@ -163,40 +165,84 @@ const TaskTable: React.FC<TaskTableProps> = ({ tasks, onEdit, onDelete }) => {
   const table = useMaterialReactTable({
     columns,
     data: tasks,
-    enableColumnResizing: true,
-    enableColumnFilterModes: true,
-    enableColumnOrdering: true,
+    enableColumnResizing: false,
+    enableColumnFilterModes: false,
+    enableColumnOrdering: false,
     enableGlobalFilter: true,
-    enableGrouping: true,
-    enableHiding: true,
+    enableGrouping: false,
+    enableHiding: false,
     enableStickyHeader: true,
+    enableBottomToolbar: true,
+    enableDensityToggle: false,
     initialState: {
       showGlobalFilter: false,
       pagination: { pageSize: 10, pageIndex: 0 },
       showColumnFilters: false,
+      density: 'compact',
     },
     paginationDisplayMode: 'pages',
     muiTableContainerProps: {
       sx: {
         maxHeight: '600px',
+        '@media (max-width: 768px)': {
+          maxHeight: 'none',
+        },
       },
     },
     muiTableBodyCellProps: {
       sx: {
         borderRight: '1px solid rgba(224, 224, 224, 0.5)',
         borderBottom: '1px solid rgba(224, 224, 224, 0.5)',
+        '@media (max-width: 768px)': {
+          borderRight: 'none',
+          padding: '8px 4px',
+          fontSize: '13px',
+          '&:first-of-type': {
+            fontWeight: 600,
+          },
+        },
       },
     },
     muiTableHeadCellProps: {
       sx: {
         borderRight: '1px solid rgba(224, 224, 224, 0.5)',
         backgroundColor: '#fafafa',
+        '@media (max-width: 768px)': {
+          borderRight: 'none',
+          padding: '8px 4px',
+          fontSize: '11px',
+          fontWeight: 600,
+        },
+      },
+    },
+    muiTablePaperProps: {
+      sx: {
+        '@media (max-width: 768px)': {
+          boxShadow: 'none',
+        },
+      },
+    },
+    muiPaginationProps: {
+      sx: {
+        '@media (max-width: 768px)': {
+          '& .MuiToolbar-root': {
+            flexWrap: 'wrap',
+            gap: '8px',
+          },
+        },
       },
     },
   });
 
   return (
-    <div style={{ background: 'white', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)' }}>
+    <div style={{ 
+      background: 'white', 
+      borderRadius: '8px', 
+      overflow: 'hidden', 
+      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+      width: '100%',
+      overflowX: 'auto',
+    }}>
       <MaterialReactTable table={table} />
     </div>
   );

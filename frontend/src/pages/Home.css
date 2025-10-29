@@ -48,3 +48,53 @@
   margin: 0;
 }
 
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .welcome-section {
+    padding: 10px 0;
+  }
+
+  .welcome-section h1 {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  .welcome-section > p {
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .stat-card {
+    padding: 20px;
+  }
+
+  .stat-card h3 {
+    font-size: 16px;
+  }
+
+  .stat-card p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome-section h1 {
+    font-size: 20px;
+  }
+
+  .welcome-section > p {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+
+  .stat-card {
+    padding: 16px;
+  }
+}
+

@@ -1,0 +1,39 @@
+.table-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.table-description {
+  max-width: 300px;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .table-actions {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .table-actions button {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .table-description {
+    max-width: 200px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .table-description {
+    max-width: 150px;
+  }
+
+  .table-actions button {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+}
+

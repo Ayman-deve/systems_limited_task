@@ -2,7 +2,12 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './Sidebar.css';
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -16,6 +21,7 @@ const Sidebar: React.FC = () => {
 
   const handleNavigation = (path: string) => {
     navigate(path);
+    onClose(); // Close sidebar on mobile after navigation
   };
 
   const menuItems = [
@@ -28,18 +34,21 @@ const Sidebar: React.FC = () => {
   const activeTab = getActiveTab();
 
   return (
-    <aside className="sidebar">
-      {menuItems.map((item) => (
-        <div
-          key={item.id}
-          className={`sidebar-item ${activeTab === item.id ? 'active' : ''}`}
-          onClick={() => handleNavigation(item.path)}
-        >
-          <span className="sidebar-icon">{item.icon}</span>
-          <span className="sidebar-label">{item.label}</span>
-        </div>
-      ))}
-    </aside>
+    <>
+      <div className={`sidebar-overlay ${isOpen ? 'active' : ''}`} onClick={onClose}></div>
+      <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
+        {menuItems.map((item) => (
+          <div
+            key={item.id}
+            className={`sidebar-item ${activeTab === item.id ? 'active' : ''}`}
+            onClick={() => handleNavigation(item.path)}
+          >
+            <span className="sidebar-icon">{item.icon}</span>
+            <span className="sidebar-label">{item.label}</span>
+          </div>
+        ))}
+      </aside>
+    </>
   );
 };
 

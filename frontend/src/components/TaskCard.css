@@ -70,3 +70,59 @@
   flex: 1;
 }
 
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .task-card {
+    padding: 16px;
+  }
+
+  .task-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .task-title {
+    font-size: 18px;
+    margin-right: 0;
+  }
+
+  .task-status {
+    align-self: flex-start;
+  }
+
+  .task-description {
+    font-size: 14px;
+  }
+
+  .task-detail-item {
+    font-size: 13px;
+  }
+
+  .task-actions {
+    flex-direction: column;
+  }
+
+  .task-actions .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .task-card {
+    padding: 12px;
+  }
+
+  .task-title {
+    font-size: 16px;
+  }
+
+  .task-description {
+    font-size: 13px;
+  }
+
+  .task-detail-item {
+    font-size: 12px;
+  }
+}
+

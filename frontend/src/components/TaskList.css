@@ -17,3 +17,33 @@
   font-size: 18px;
 }
 
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .task-list {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .empty-state {
+    padding: 40px 15px;
+  }
+
+  .empty-state p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .task-list {
+    gap: 12px;
+  }
+
+  .empty-state {
+    padding: 30px 12px;
+  }
+
+  .empty-state p {
+    font-size: 14px;
+  }
+}
+

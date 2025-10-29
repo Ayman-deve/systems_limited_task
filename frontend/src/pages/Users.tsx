@@ -37,7 +37,6 @@ const Users: React.FC = () => {
     {
       accessorKey: 'name',
       header: 'Name',
-      size: 200,
       Cell: ({ cell }) => (
         <div style={{ fontWeight: 500 }}>{cell.getValue<string>()}</div>
       ),
@@ -45,7 +44,6 @@ const Users: React.FC = () => {
     {
       accessorKey: 'email',
       header: 'Email',
-      size: 250,
       Cell: ({ cell }) => (
         <div style={{ color: '#666' }}>{cell.getValue<string>()}</div>
       ),
@@ -53,7 +51,6 @@ const Users: React.FC = () => {
     {
       accessorKey: 'role',
       header: 'Role',
-      size: 120,
       Cell: ({ cell }) => {
         const role = cell.getValue<string>();
         return (
@@ -78,34 +75,68 @@ const Users: React.FC = () => {
   const table = useMaterialReactTable({
     columns,
     data: users,
-    enableColumnResizing: true,
+    enableColumnResizing: false,
     enableColumnFilterModes: true,
     enableColumnOrdering: true,
     enableGlobalFilter: true,
     enableGrouping: true,
     enableHiding: true,
     enableStickyHeader: true,
+    enableBottomToolbar: true,
+    enableDensityToggle: false,
     initialState: {
       showGlobalFilter: false,
       pagination: { pageSize: 10, pageIndex: 0 },
       showColumnFilters: false,
+      density: 'compact',
     },
     paginationDisplayMode: 'pages',
     muiTableContainerProps: {
       sx: {
         maxHeight: '600px',
+        '@media (max-width: 768px)': {
+          maxHeight: 'none',
+        },
       },
     },
     muiTableBodyCellProps: {
       sx: {
         borderRight: '1px solid rgba(224, 224, 224, 0.5)',
         borderBottom: '1px solid rgba(224, 224, 224, 0.5)',
+        '@media (max-width: 768px)': {
+          borderRight: 'none',
+          padding: '8px 4px',
+          fontSize: '13px',
+        },
       },
     },
     muiTableHeadCellProps: {
       sx: {
         borderRight: '1px solid rgba(224, 224, 224, 0.5)',
         backgroundColor: '#fafafa',
+        '@media (max-width: 768px)': {
+          borderRight: 'none',
+          padding: '8px 4px',
+          fontSize: '11px',
+          fontWeight: 600,
+        },
+      },
+    },
+    muiTablePaperProps: {
+      sx: {
+        '@media (max-width: 768px)': {
+          boxShadow: 'none',
+        },
+      },
+    },
+    muiPaginationProps: {
+      sx: {
+        '@media (max-width: 768px)': {
+          '& .MuiToolbar-root': {
+            flexWrap: 'wrap',
+            gap: '8px',
+          },
+        },
       },
     },
   });
@@ -119,7 +150,14 @@ const Users: React.FC = () => {
       {loading ? (
         <div className="loading">Loading users...</div>
       ) : (
-        <div style={{ background: 'white', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)' }}>
+        <div style={{ 
+          background: 'white', 
+          borderRadius: '8px', 
+          overflow: 'hidden', 
+          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+          width: '100%',
+          overflowX: 'auto',
+        }}>
           <MaterialReactTable table={table} />
         </div>
       )}
