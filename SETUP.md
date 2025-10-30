@@ -53,7 +53,7 @@ cd frontend
 npm install
 
 # Create .env file
-echo "REACT_APP_API_URL=http://localhost:5000" > .env
+echo "REACT_APP_API_URL=http://localhost:8080" > .env
 
 # Start frontend
 npm start

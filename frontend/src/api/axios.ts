@@ -30,10 +30,19 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
+    const status = error.response?.status;
+    const token = localStorage.getItem('token');
+    const requestUrl: string | undefined = error.config?.url;
+
+    // Allow 401 errors to surface on auth endpoints (login/register) so UI can show messages
+    const isAuthEndpoint = requestUrl?.includes('/auth/login') || requestUrl?.includes('/auth/register');
+
+    if (status === 401 && token && !isAuthEndpoint) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      window.location.href = '/login';
+      if (window.location.pathname !== '/login') {
+        window.location.href = '/login';
+      }
     }
     return Promise.reject(error);
   }
