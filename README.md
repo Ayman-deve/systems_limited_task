@@ -58,35 +58,11 @@ Build a small **Team Task Management App** with the following features:
 - 🧱 CRUD endpoints for tasks
 - 👤 User endpoints (register, login, get profile)
 - 🧩 Assign tasks to users
-- 🧾 Input validation using Joi / Zod / class-validator
-- 🪵 Basic logging (Winston or console)
+- 🧾 Input validation using Joi 
+- 🪵 Basic logging Winston
 - 🧰 Global error handling middleware
 
 ---
-
-## 📁 Suggested Folder Structure
-
-### Frontend
-├── src/
-│ ├── api/
-│ ├── components/
-│ ├── context/ (or query/)
-│ ├── pages/
-│ ├── routes/
-│ ├── types/
-│ └── App.tsx
-└── package.json
-
-### Backend
-├── src/
-│ ├── controllers/
-│ ├── services/
-│ ├── models/
-│ ├── routes/
-│ ├── middleware/
-│ ├── utils/
-│ └── server.ts
-└── package.json
 
 ## 🧠 Key Features Overview
 
