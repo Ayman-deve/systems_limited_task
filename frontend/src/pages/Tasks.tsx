@@ -3,6 +3,7 @@ import { Task } from '../types';
 import * as taskAPI from '../api/tasks';
 import TaskTable from '../components/TaskTable';
 import TaskModal from '../components/TaskModal';
+import { Plus } from 'lucide-react';
 
 const Tasks: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -60,13 +61,13 @@ const Tasks: React.FC = () => {
 
   return (
     <div className="w-full">
-      <div className="flex justify-between items-center mb-5 flex-wrap gap-2.5 md:flex-col md:items-start">
+      <div className="flex flex-row justify-between items-center mb-5 flex-wrap gap-2.5 md:items-start">
         <h2 className="text-xl font-bold text-black md:text-lg sm:text-base">Tasks</h2>
         <button 
-          className="flex items-center px-5 py-2.5 bg-[#1976d2] text-white border-none rounded-md text-sm font-medium cursor-pointer transition-colors hover:bg-[#1565c0] whitespace-nowrap md:w-full md:justify-center md:px-5 md:py-3 md:text-base"
+          className="flex items-center px-5 py-2.5 bg-[#1976d2] text-white border-none rounded-md text-sm font-medium cursor-pointer transition-colors hover:bg-[#1565c0] whitespace-nowrap md:justify-center md:px-5 md:py-3 md:text-base"
           onClick={handleCreateTask}
         >
-          <span className="mr-2 text-lg">+</span> Add Task
+          <Plus size={20} className="mr-2" /> Add Task
         </button>
       </div>
 

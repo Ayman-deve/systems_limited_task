@@ -5,6 +5,7 @@ import {
   type MRT_ColumnDef,
 } from 'material-react-table';
 import { Task } from '../types';
+import { PencilIcon, TrashIcon, UserIcon } from 'lucide-react';
 
 interface TaskTableProps {
   tasks: Task[];
@@ -71,33 +72,42 @@ const TaskTable: React.FC<TaskTableProps> = ({ tasks, onEdit, onDelete }) => {
       accessorKey: 'status',
       header: 'Status',
       size: 120,
+      muiTableHeadCellProps: {
+        align: 'center' as const, // centers header text
+      },
       Cell: ({ cell }) => {
         const status = cell.getValue<string>();
         const statusColor = getStatusColor(status);
         return (
-          <span
-            style={{
-              display: 'inline-block',
-              padding: '4px 12px',
-              borderRadius: '12px',
-              fontSize: '12px',
-              fontWeight: 500,
-              backgroundColor: statusColor.bg,
-              color: statusColor.text,
-            }}
-          >
-            {getStatusLabel(status)}
-          </span>
+          <div className="flex items-center justify-center">
+            <span
+              style={{
+                display: 'inline-block',
+                padding: '4px 12px',
+                borderRadius: '12px',
+                fontSize: '12px',
+                fontWeight: 500,
+                backgroundColor: statusColor.bg,
+                color: statusColor.text,
+                textAlign: 'center'
+              }}
+            >
+              {getStatusLabel(status)}
+            </span>
+          </div>
         );
       },
     },
     {
       accessorKey: 'assignedTo',
       header: 'Assigned To',
+      muiTableHeadCellProps: {
+        align: 'center' as const, // centers header text
+      },
       size: 150,
       Cell: ({ row }) => (
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <span>👤</span>
+        <div className="flex items-center gap-2">
+          <span className="text-lg"><UserIcon size={20} /></span>
           <span>{row.original.assignedTo?.name || 'Unassigned'}</span>
         </div>
       ),
@@ -106,21 +116,27 @@ const TaskTable: React.FC<TaskTableProps> = ({ tasks, onEdit, onDelete }) => {
       id: 'actions',
       header: 'Actions',
       size: 150,
-      Cell: ({ row }) => (
-        <div className="flex gap-3 md:flex-col md:gap-1.5">
+      enableSorting: false,
+      muiTableHeadCellProps: {
+        align: 'center' as const,
+      },
+      Cell: ({ row }: { row: any }) => (
+        <div className="flex gap-3 flex-row md:gap-1.5">
           <button
             onClick={() => onEdit(row.original)}
-            className="px-4 py-1.5 border border-[#e0e0e0] rounded-md text-[13px] font-medium cursor-pointer bg-[#f5f5f5] text-[#333] transition-all hover:bg-[#e8e8e8] hover:border-[#d0d0d0] md:w-full md:px-3 md:py-2 md:text-xs"
+            className="flex flex-row items-center md:px-0 px-3 justify-center py-1.5 border border-[#e0e0e0] rounded-md text-[13px] font-medium cursor-pointer bg-[#f5f5f5] text-[#333] transition-all hover:bg-[#e8e8e8] hover:border-[#d0d0d0] md:w-full md:py-2 md:text-xs"
           >
+            <PencilIcon size={15} className="mr-1"/>
             Edit
-          </button>
+          </button >
           <button
             onClick={() => onDelete(row.original._id)}
-            className="px-4 py-1.5 border border-[#dc3545] rounded-md text-[13px] font-medium cursor-pointer bg-[#dc3545] text-white transition-all hover:bg-[#c82333] hover:border-[#bd2130] md:w-full md:px-3 md:py-2 md:text-xs"
+            className="flex flex-row items-center md:px-0 px-3 justify-center py-1.5 border border-[#dc3545] rounded-md text-[13px] font-medium cursor-pointer bg-[#dc3545] text-white transition-all hover:bg-[#c82333] hover:border-[#bd2130] md:w-full md:py-2 md:text-xs"
           >
+            <TrashIcon size={15} className="mr-1" />
             Delete
           </button>
-        </div>
+        </div >
       ),
     },
   ];
@@ -137,6 +153,11 @@ const TaskTable: React.FC<TaskTableProps> = ({ tasks, onEdit, onDelete }) => {
     enableStickyHeader: true,
     enableBottomToolbar: true,
     enableDensityToggle: false,
+    enableFilters: false,
+    enableSorting: true,
+    enableSortingRemoval: true,
+    enableColumnActions: false,
+    enableFullScreenToggle: false,
     initialState: {
       showGlobalFilter: false,
       pagination: { pageSize: 10, pageIndex: 0 },

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
+import { ClipboardList, Users as UsersIcon, Settings } from 'lucide-react';
 
 const Home: React.FC = () => {
   const { user } = useAuth();
@@ -12,15 +13,24 @@ const Home: React.FC = () => {
         
         <div className="md:grid md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] md:gap-5 md:mt-7 grid-cols-1 gap-3.5 mt-5 sm:gap-3">
           <div className="bg-white border border-[#e0e0e0] rounded-lg md:p-6 p-5 shadow-sm transition-shadow hover:shadow-md sm:p-4">
-            <h3 className="md:text-lg md:font-semibold md:text-[#333] md:mb-2 text-base sm:text-base">📋 Tasks</h3>
+            <div className="flex items-center gap-2 md:mb-2 mb-1">
+              <ClipboardList className="md:text-lg text-base" size={20} />
+              <h3 className="md:text-lg md:font-semibold md:text-[#333] text-base sm:text-base">Tasks</h3>
+            </div>
             <p className="md:text-sm md:text-[#666] md:m-0 text-[13px] sm:text-[13px]">Navigate to Tasks to start managing your workload</p>
           </div>
           <div className="bg-white border border-[#e0e0e0] rounded-lg md:p-6 p-5 shadow-sm transition-shadow hover:shadow-md sm:p-4">
-            <h3 className="md:text-lg md:font-semibold md:text-[#333] md:mb-2 text-base sm:text-base">👥 Team Members</h3>
+            <div className="flex items-center gap-2 md:mb-2 mb-1">
+              <UsersIcon className="md:text-lg text-base" size={20} />
+              <h3 className="md:text-lg md:font-semibold md:text-[#333] text-base sm:text-base">Team Members</h3>
+            </div>
             <p className="md:text-sm md:text-[#666] md:m-0 text-[13px] sm:text-[13px]">View and manage team members in the Users section</p>
           </div>
           <div className="bg-white border border-[#e0e0e0] rounded-lg md:p-6 p-5 shadow-sm transition-shadow hover:shadow-md sm:p-4">
-            <h3 className="md:text-lg md:font-semibold md:text-[#333] md:mb-2 text-base sm:text-base">⚙️ Settings</h3>
+            <div className="flex items-center gap-2 md:mb-2 mb-1">
+              <Settings className="md:text-lg text-base" size={20} />
+              <h3 className="md:text-lg md:font-semibold md:text-[#333] text-base sm:text-base">Settings</h3>
+            </div>
             <p className="md:text-sm md:text-[#666] md:m-0 text-[13px] sm:text-[13px]">Configure your account and preferences in Settings</p>
           </div>
         </div>

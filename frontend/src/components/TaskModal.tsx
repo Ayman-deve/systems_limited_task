@@ -73,7 +73,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ task, onClose, onSave }) => {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-[1000] p-5 md:p-2.5 md:items-start md:pt-5" onClick={onClose}>
-      <div className="bg-white rounded-lg w-full max-w-[600px] max-h-[90vh] overflow-y-auto shadow-[0_10px_40px_rgba(0,0,0,0.2)] md:max-w-full md:max-h-[95vh] sm:max-h-[100vh] sm:rounded-t-lg sm:rounded-b-none" onClick={(e) => e.stopPropagation()}>
+      <div className="self-center bg-white rounded-lg w-full max-w-[600px] max-h-[90vh] overflow-y-auto shadow-[0_10px_40px_rgba(0,0,0,0.2)]  md:max-h-[95vh] sm:max-h-[100vh] sm:rounded-t-lg sm:rounded-b-none" onClick={(e) => e.stopPropagation()}>
         <div className="flex justify-between items-center p-5 border-b border-[#ddd] md:p-4 sm:p-3">
           <h2 className="m-0 text-[#333] md:text-lg sm:text-base">{task ? 'Edit Task' : 'Create New Task'}</h2>
           <button className="bg-none border-none text-[32px] text-[#999] cursor-pointer leading-none p-0 w-[30px] h-[30px] flex items-center justify-center hover:text-[#333] md:text-[28px] md:w-[28px] md:h-[28px]" onClick={onClose}>
@@ -108,7 +108,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ task, onClose, onSave }) => {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-1 md:gap-2.5">
+          <div className="grid grid-cols-2 gap-4 md:gap-2.5">
             <div className="mb-4">
               <label className="block mb-1 font-medium text-[#333]">Status</label>
               <select
@@ -136,7 +136,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ task, onClose, onSave }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-1 md:gap-2.5">
+          <div className="grid grid-cols-2 gap-4 md:gap-2.5">
             <div className="mb-4">
               <label className="block mb-1 font-medium text-[#333]">Assign To</label>
               <select
@@ -164,17 +164,17 @@ const TaskModal: React.FC<TaskModalProps> = ({ task, onClose, onSave }) => {
             </div>
           </div>
 
-          <div className="flex gap-2.5 justify-end mt-5 md:flex-col-reverse md:gap-2.5 md:mt-4">
-            <button 
-              type="button" 
-              className="px-5 py-2.5 border-none rounded cursor-pointer text-base font-medium bg-[#6c757d] text-white min-w-[100px] hover:bg-[#5a6268] disabled:opacity-60 disabled:cursor-not-allowed md:w-full md:min-w-0 md:p-3"
+          <div className="flex gap-2.5 justify-evenly mt-5 md:gap-2.5 md:mt-4">
+            <button
+              type="button"
+              className="px-5 py-2.5 border-none rounded cursor-pointer text-base font-medium bg-[#6c757d] text-white min-w-[30%] hover:bg-[#5a6268] disabled:opacity-60 disabled:cursor-not-allowed md:min-w-[30%] md:p-3"
               onClick={onClose}
             >
               Cancel
             </button>
-            <button 
-              type="submit" 
-              className="px-5 py-2.5 border-none rounded cursor-pointer text-base font-medium bg-[#007bff] text-white min-w-[100px] hover:bg-[#0056b3] disabled:opacity-60 disabled:cursor-not-allowed md:w-full md:min-w-0 md:p-3" 
+            <button
+              type="submit"
+              className="px-5 py-2.5 border-none rounded cursor-pointer text-base font-medium bg-[#007bff] text-white min-w-[30%] hover:bg-[#0056b3] disabled:opacity-60 disabled:cursor-not-allowed md:min-w-[30%] md:p-3"
               disabled={loading}
             >
               {loading ? 'Saving...' : task ? 'Update' : 'Create'}
