@@ -89,11 +89,11 @@ Build a small **Team Task Management App** with the following features:
 
 **Backend:**
 - Node.js 18+
-- Express.js or NestJS
+- Express.js
 - TypeScript
 - JWT
-- MongoDB (Mongoose) or SQLite (Prisma/TypeORM)
-- Joi / Zod / class-validator
+- MongoDB (Mongoose)
+- Joi 
 - Winston (for logging)
 
 ---
@@ -107,7 +107,7 @@ Build a small **Team Task Management App** with the following features:
 
 ### 1. Clone the Repository
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Ayman-deve/systems_limited_task
 cd systems_limited_task
 ```
 
@@ -123,8 +123,8 @@ npm install
 cp .env.example .env
 
 # Edit .env and set your MongoDB URI and JWT secret
-# MONGODB_URI=mongodb://localhost:27017/team-tasks
-# JWT_SECRET=your-secret-key
+# MONGODB_URI=mongodb+srv://aymanelbeherydnaaya_db_user:Aymoon2412000@tasks.tb3sp1i.mongodb.net/Tasks_Dashboard?retryWrites=true&w=majority
+# JWT_SECRET=WY7YFiEeDAsfkiXabqueGtYgwAKzCUO71b3INJTpvtw=
 
 # Create logs directory
 mkdir logs
@@ -146,7 +146,7 @@ cd frontend
 npm install
 
 # Create .env file
-echo "REACT_APP_API_URL=http://localhost:5000" > .env
+echo "REACT_APP_API_URL=http://localhost:8080" > .env
 
 # Run the frontend
 npm start
